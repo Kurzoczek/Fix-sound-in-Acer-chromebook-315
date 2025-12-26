@@ -57,4 +57,8 @@ Ever wondered what's happening under the hood while you wait for your sound to r
 **Mission Accomplished!** 🎉: 
       It cleans up the "sticky note" from your .bashrc, resets the GRUB settings, and tells you to enjoy your music! 🎶 💃
 <br><br>
-***ENJO YOUR SOUND 🥳🎉🎶🎧***
+<br><br>
+****REMEMBER TO UNMUTE ALL CHANELLS IN ALSAMIXER (OPEN IT WIT ALSAMIXER COMMAND}!!!****
+<br><br>
+<br><br>
+***ENJOY YOUR SOUND 🥳🎉🎶🎧***
