@@ -36,7 +36,7 @@ This repository contains a complete automated recovery system for Intel Jasper L
 Ever wondered what's happening under the hood while you wait for your sound to return? Here is the step-by-step breakdown:
 
    **Phase 1: The Preparation 🏗️**
-      The Kernel Hunt 🕵️‍♂️: The script tracks down and installs Kernel 6.8.0-generic. Why? Because it’s the "Goldilocks" version where your audio hardware feels right at home.
+      The Kernel Hunt 🕵️‍♂️: The script tracks down and installs Kernel 6.8.0-generic. Why? Because it’s the "Goldilocks" version where your audio hardware feels right at home, and may be modded with no stress, like it may be in a  never kernels.
 
       GRUB Persuasion 🧠: We politely tell your bootloader (GRUB) to pick Kernel 6.8 for the next boot. It's like giving your laptop a "one-time VIP pass" to the older kernel.
 
