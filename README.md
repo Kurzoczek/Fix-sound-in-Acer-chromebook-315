@@ -9,3 +9,4 @@ Requirements:
 Kernel: This fix is designed for Linux Mainline Kernel 6.12 or newer.
 
 Packages: Before applying the fix, ensure you have the necessary firmware installed: sudo apt update && sudo apt install firmware-sof-signed alsa-ucm-conf"
+After applying a fix, remember to unmute all chanells in alsamixer, and set a proper audio output in GUI system mixser!!!
