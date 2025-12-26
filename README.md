@@ -8,16 +8,26 @@ This repository contains a complete automated recovery system for Intel Jasper L
 - `restore_audio.sh`: The main automation engine.
 
 
-**⚠️ IMPORTANT: SAFETY FIRST** **Please make a full backup of your important data before running this script.** *While this script is designed for safety, kernel and system file modifications always carry risks.*
+<br><br>
 
+
+
+
+**⚠️ IMPORTANT: SAFETY FIRST** **Please make a full backup of your important data before running this script (or do full system backup, if you feel uncomfortable with manipulation on workin machine 😛)** *While this script is designed for safety, kernel and system file modifications always carry risks.*
+
+
+
+
+<br><br>
 
 
 
 ## 🚀 How to use it
 
 1. **Clone or download** this repository to your local machine.
-2. **Open a terminal** inside the folder.
-3. **Run the script** with root privileges:
+2. **Unpack**
+3. **Open a terminal** inside the unpacked folder.
+4. **Run the script** with root privileges:
    ```bash
    sudo chmod +x restore_audio.sh
    sudo ./restore_audio.sh
