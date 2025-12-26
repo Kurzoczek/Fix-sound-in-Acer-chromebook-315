@@ -8,5 +8,5 @@ In folder "audio_backup_rull" you have a files which are needed do proper work f
 
 Kernel: This fix is designed for Linux Mainline Kernel 6.12 or newer.
 
-Packages: Before applying the fix, <span style="color: red;"><b>DO FULL BACKUP YOUR DATA</b></span>(just in case), ensure you have the necessary firmware installed: sudo apt update && sudo apt install firmware-sof-signed alsa-ucm-conf"
+Packages: Before applying the fix, <span style="color: red;"><b>DO FULL BACKUP OF YOUR DATA</b></span> (just in case), ensure you have the necessary firmware installed: sudo apt update && sudo apt install firmware-sof-signed alsa-ucm-conf"
 After applying a fix, remember to unmute all chanells in alsamixer, and set a proper audio output in GUI system mixser!!!
