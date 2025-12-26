@@ -3,7 +3,7 @@ Operating System: Kubuntu 24.04 KDE Plasma Version: 5.27.12 KDE Frameworks Versi
 
 
 "Hi! Together with Gemini AI, I’ve developed a fix for Ubuntu 24.04 that enables the sof-rt5650 sound card on the Acer Chromebook 315 (Intel Alder Lake/Jasper Lake). You can find the system specifications at the beginning of the description.
-
+In folder "audio_backup_rull" uoy have a files which are needet do proper work for soundcard. They are organize in proper folder tree.
 Requirements:
 
 Kernel: This fix is designed for Linux Mainline Kernel 6.12 or newer.
