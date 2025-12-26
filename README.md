@@ -1,12 +1,25 @@
-# Fix-sound-in-Acer-chromebook-315 for UBUNTU 24.04
-Operating System: Kubuntu 24.04 KDE Plasma Version: 5.27.12 KDE Frameworks Version: 5.115.0 Qt Version: 5.15.13 Kernel Version: 6.12.0-061200-generic (64-bit) Graphics Platform: X11 Processors: 4 × Intel® N150 Memory: 7.6 GiB of RAM Graphics Processor: Mesa Intel® Graphics Manufacturer: Google Product Name: Rull System Version: rev3 . 
+# Audio Recovery Tool for Intel JSL (RT5650)
 
+This repository contains a complete automated recovery system for Intel Jasper Lake devices (like Chromebooks/Laptops) using the **RT5650** audio codec. It includes a two-phase script that manages a kernel downgrade and restores specific audio configurations.
 
-"Hi! Together with Gemini AI, I’ve developed a fix for Ubuntu 24.04 that enables the sof-rt5650 sound card on the Acer Chromebook 315 (Intel Alder Lake/Jasper Lake). You can find the system specifications at the beginning of the description.
-In folder "audio_backup_rull" you have a files which are needed do proper work for soundcard. They are organize in proper folder tree.
-<b>Requirements: script will install nesesery packages </b>
+## 📁 Directory Structure
+- `audio_backup_main/`: Core system configuration files (`alsa-base.conf`, `asound.state`, UCM configs).
+- `system_audio_resources/`: Hardware-specific binaries (`sof-jsl.ri` firmware and `.tplg` topologies).
+- `restore_audio.sh`: The main automation engine.
 
-Kernel: This fix is designed for Linux Mainline Kernel 6.12 or newer.
+## 🚀 How to use it
+## 🚀 How to use it
 
-Packages: Before applying the fix, <span style="color: red;"><b>DO FULL BACKUP OF YOUR DATA</b></span> (just in case), ensure you have the necessary firmware installed: sudo apt update && sudo apt install firmware-sof-signed alsa-ucm-conf"
-After applying a fix, remember to unmute all chanells in alsamixer, and set a proper audio output in GUI system mixser!!!
+### ⚠️ IMPORTANT: SAFETY FIRST
+```diff
+- ATTENTION: Please make a full backup of your important data before running this script.
+- While this script is designed for safety, kernel and system file modifications always carry risks.
+
+1. **Clone or download** this repository to your local machine.
+2. **Open a terminal** inside the folder.
+3. **Run the script** with root privileges:
+   ```bash
+   sudo chmod +x restore_audio.sh
+   sudo ./restore_audio.sh
+
+   
