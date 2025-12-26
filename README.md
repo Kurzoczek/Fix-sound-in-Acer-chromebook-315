@@ -25,7 +25,7 @@ This repository contains a complete automated recovery system for Intel Jasper L
 ## 🚀 How to use it
 
 1. **Clone or download** this repository to your local machine.
-2. **Unpack**
+2. **Unpack 📦 or open main folder 📂**
 3. **Open a terminal** inside the unpacked folder.
 4. **Run the script** with root privileges:
    ```bash
