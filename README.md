@@ -7,13 +7,13 @@ This repository contains a complete automated recovery system for Intel Jasper L
 - `system_audio_resources/`: Hardware-specific binaries (`sof-jsl.ri` firmware and `.tplg` topologies).
 - `restore_audio.sh`: The main automation engine.
 
-## 🚀 How to use it
-## 🚀 How to use it
 
-### ⚠️ IMPORTANT: SAFETY FIRST
-```diff
-- ATTENTION: Please make a full backup of your important data before running this script.
-- While this script is designed for safety, kernel and system file modifications always carry risks.
+**⚠️ IMPORTANT: SAFETY FIRST** **Please make a full backup of your important data before running this script.** *While this script is designed for safety, kernel and system file modifications always carry risks.*
+
+
+
+
+## 🚀 How to use it
 
 1. **Clone or download** this repository to your local machine.
 2. **Open a terminal** inside the folder.
