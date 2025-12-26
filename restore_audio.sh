@@ -81,3 +81,77 @@ if [ -f "$FLAG_FILE" ]; then
         else
              # Fallback to older naming convention if found
              cp "$BASE_DIR/audio_backup_main/usr/share/alsa/ucm2/sofrt5650/sof-rt5650.conf" "$TARGET_UCM/sofrt5650.conf" 2>/dev/null || true
+        fi
+        verify_copy "$TARGET_UCM/sofrt5650.conf" "644"
+        
+        # Internal naming correction within UCM configs
+        find "$TARGET_UCM" -type f -name "*.conf" -exec sed -i 's/sof-rt5650/sofrt5650/g' {} +
+        
+        # Firmware and Topologies
+        smart_copy "$BASE_DIR/system_audio_resources/sof-firmware/sof-jsl.ri" "/lib/firmware/intel/sof/sof-jsl.ri" "644"
+        
+        # Iterate and verify all .tplg files
+        for tplg in "$BASE_DIR/system_audio_resources/sof-tplg/"*.tplg; do
+            [ -e "$tplg" ] || continue
+            dest="/lib/firmware/intel/sof-tplg/$(basename "$tplg")"
+            cp "$tplg" "$dest"
+            verify_copy "$dest" "644"
+        done
+
+        # [6/6] Final system configuration
+        echo "Restoring Mixer state..."
+        smart_copy "$BASE_DIR/audio_backup_main/var/lib/alsa/asound.state" "/var/lib/alsa/asound.state" "644"
+        
+        update-initramfs -u -k "$CURRENT_KERNEL"
+        
+        # Cleanup auto-start entry
+        rm "$FLAG_FILE"
+        sed -i '/restore_audio.sh/d' "/home/$SUDO_USER/.bashrc"
+        
+        echo "-------------------------------------------------------"
+        echo "DONE! Audio configuration completed on Kernel $TARGET_VERSION."
+        echo "On next reboot, the system will return to the default kernel."
+        echo "-------------------------------------------------------"
+        exit 0
+    else
+        echo "ERROR: System booted with kernel $CURRENT_KERNEL."
+        echo "Please restart and select Kernel 6.8 in GRUB 'Advanced Options'."
+        exit 1
+    fi
+fi
+
+# PHASE 1: Kernel installation and one-time boot setup
+echo "--- Phase 1: Preparing Kernel 6.8 ---"
+
+if [ ! -d "$BASE_DIR/audio_backup_main" ] || [ ! -d "$BASE_DIR/system_audio_resources" ]; then
+    echo "ERROR: Backup directories not found in $BASE_DIR!"
+    exit 1
+fi
+
+apt update
+apt install -y linux-image-6.8.0-generic linux-headers-6.8.0-generic linux-modules-extra-6.8.0-generic
+
+# Try to identify GRUB menu entry for 6.8
+MENU_ENTRY=$(grep -e "menuentry '.*6.8.0-generic" /boot/grub/grub.cfg | head -n 1 | cut -d"'" -f2)
+
+if [ -n "$MENU_ENTRY" ]; then
+    echo "Found GRUB entry: $MENU_ENTRY"
+    grub-reboot "1>$MENU_ENTRY"
+    echo "System set to boot Kernel 6.8 for the next restart only."
+else
+    echo "Warning: Kernel 6.8 not found in grub.cfg. Please select it manually during reboot."
+fi
+
+# Arm the script for Phase 2
+touch "$FLAG_FILE"
+if ! grep -q "restore_audio.sh" "/home/$SUDO_USER/.bashrc"; then
+    echo "sudo $BASE_DIR/restore_audio.sh" >> "/home/$SUDO_USER/.bashrc"
+fi
+
+echo "-------------------------------------------------------"
+echo "PHASE 1 COMPLETE."
+echo "The system will now reboot into Kernel 6.8."
+echo "-------------------------------------------------------"
+read -p "Reboot now? (y/n) " -n 1 -r
+echo
+[[ $REPLY =~ ^[Yy]$ ]] && reboot
